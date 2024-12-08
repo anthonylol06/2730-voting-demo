@@ -1,0 +1,462 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap");
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: #191919;
+  color: #fff;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.buttonAnimation {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #191919;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  font-family: "Rajdhani", sans-serif;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.buttonAnimation:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.buttonAnimation:active {
+  color: #191919;
+}
+
+.buttonAnimation:active:after {
+  background: transparent;
+}
+
+.buttonAnimation:hover:before {
+  opacity: 1;
+}
+
+.buttonAnimation:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #131313;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+textarea {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px,
+    rgba(175, 64, 255, 0.5) 0 0 10px, rgba(91, 66, 243, 0.5) 0 0 15px;
+  transition: box-shadow 0.5s, border-color 0.5s, transform 0.5s;
+  padding: 16px;
+  color: #ffffff;
+  background: #131313;
+}
+
+textarea:hover {
+  transform: scale(1.025);
+  box-shadow: 0 0 15px #af40ff, rgba(151, 65, 252, 0.5) 0 0 25px,
+    rgba(91, 66, 243, 0.5) 0 0 15px;
+}
+
+textarea:focus {
+  border-color: #131313;
+  box-shadow: 0 0 20px #af40ff, rgba(151, 65, 252, 0.5) 0 0 30px,
+    rgba(91, 66, 243, 0.5) 0 0 20px;
+  outline: none;
+  transform: scale(1.05);
+}
+
+@keyframes glowinggg {
+  0% {
+    box-shadow: 0 0 5px #af40ff, 0 0 10px rgba(151, 65, 252, 0.5),
+      0 0 15px rgba(91, 66, 243, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px #af40ff, 0 0 30px rgba(151, 65, 252, 0.5),
+      0 0 40px rgba(91, 66, 243, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px #af40ff, 0 0 10px rgba(151, 65, 252, 0.5),
+      0 0 15px rgba(91, 66, 243, 0.5);
+  }
+}
+
+textarea:focus {
+  animation: glowinggg 1.5s infinite;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.candidates-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.candidate-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.radio-input {
+  display: none; /* Hide the default radio button */
+}
+
+.radio-label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 22px;
+}
+
+.radio-label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background: #fff;
+  transition: border-color 0.8s ease, box-shadow 0.8s;
+}
+
+.radio-label:after {
+  content: "";
+  position: absolute;
+  left: 4.5px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #222;
+  transition: transform 0.5s ease;
+}
+
+.radio-input:checked + .radio-label:before {
+  border-color: #4b6279;
+  box-shadow: 0 0 20px #af40ff, rgba(151, 65, 252, 0.5) 0 0 30px,
+    rgba(91, 66, 243, 0.5) 0 0 15px;
+}
+
+.radio-input:checked + .radio-label:after {
+  transform: translateY(-50%) scale(1);
+}
+
+.radio-label:hover:before {
+  border-color: #4b6279;
+  box-shadow: 0 0 10px #4b6279, rgba(151, 65, 252, 0.5) 0 0 20px,
+    rgba(91, 66, 243, 0.5) 0 0 10px;
+}
+
+@keyframes glowingg {
+  0% {
+    box-shadow: 0 0 5px #af40ff, 0 0 10px rgba(151, 65, 252, 0.5),
+      0 0 15px rgba(91, 66, 243, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px #af40ff, 0 0 30px rgba(151, 65, 252, 0.5),
+      0 0 40px rgba(91, 66, 243, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px #af40ff, 0 0 10px rgba(151, 65, 252, 0.5),
+      0 0 15px rgba(91, 66, 243, 0.5);
+  }
+}
+
+.radio-input:checked + .radio-label:before {
+  animation: glowingg 1.5s infinite;
+}
+
+.radio-text {
+  transition: text-shadow 0.8s;
+}
+
+.radio-input:checked + .radio-label .radio-text {
+  text-shadow: 0 0 10px #af40ff, 0 0 20px rgba(151, 65, 252, 0.5),
+    0 0 30px rgba(91, 66, 243, 0.5);
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #191919;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.popup-inner {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.9);
+  animation: popupIn 0.3s ease-in-out forwards;
+}
+
+.popup-inner:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    #af40ff,
+    #ff40af,
+    #40ffaf,
+    #40afff,
+    #af40ff
+  );
+  background-size: 400% 400%;
+  z-index: -1;
+  filter: blur(10px);
+  animation: gradientSpin 5s linear infinite;
+  border-radius: 10px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #4b0082; /* Dark purple for better visibility */
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  animation: pulse 2s infinite, colorChange 5s infinite;
+}
+
+.close-btn:hover {
+  transform: rotate(360deg) scale(1.2); /* Spinning effect on hover */
+  color: #ff1493; /* Dark pink on hover */
+  text-shadow: 0 0 10px #ff1493, 0 0 20px rgba(255, 20, 147, 0.5),
+    0 0 30px rgba(255, 20, 147, 0.5);
+}
+
+.close-btn:active {
+  transform: rotate(360deg) scale(1.1);
+  color: #32cd32; /* Dark green on active */
+  text-shadow: 0 0 10px #32cd32, 0 0 20px rgba(50, 205, 50, 0.5),
+    0 0 30px rgba(50, 205, 50, 0.5);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    color: #4b0082; /* Dark purple */
+  }
+  25% {
+    color: #ff1493; /* Dark pink */
+  }
+  50% {
+    color: #32cd32; /* Dark green */
+  }
+  75% {
+    color: #1e90ff; /* Dark blue */
+  }
+  100% {
+    color: #4b0082; /* Dark purple */
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popupIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientSpin {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.back-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  background-color: transparent; /* Make background transparent */
+  color: white; /* Set text color to white */
+  border: 2px solid transparent; /* Add a border to make the button visible */
+  font-family: "Rajdhani", sans-serif; /* Use custom font */
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    text-shadow 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: transparent;
+  text-shadow: 0 0 5px #af40ff, 0 0 10px rgba(151, 65, 252, 0.5),
+    0 0 15px rgba(91, 66, 243, 0.5);
+  animation: textFlow 1.5s infinite alternate, colorChange 3s infinite,
+    bounce 1.2s infinite ease-in-out;
+  letter-spacing: 2px; /* Adjust the gap between characters */
+}
+
+@keyframes textFlow {
+  0% {
+    letter-spacing: 1px;
+  }
+  50% {
+    letter-spacing: 2px;
+  }
+  100% {
+    letter-spacing: 1px;
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    text-shadow: 0 0 5px #af40ff, 0 0 10px rgba(151, 65, 252, 0.5),
+      0 0 15px rgba(91, 66, 243, 0.5);
+  }
+  25% {
+    text-shadow: 0 0 5px #ff40af, 0 0 10px rgba(255, 64, 175, 0.5),
+      0 0 15px rgba(243, 66, 91, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 5px #40ffaf, 0 0 10px rgba(64, 255, 175, 0.5),
+      0 0 15px rgba(66, 243, 91, 0.5);
+  }
+  75% {
+    text-shadow: 0 0 5px #40afff, 0 0 10px rgba(64, 175, 255, 0.5),
+      0 0 15px rgba(66, 91, 243, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 5px #af40ff, 0 0 10px rgba(151, 65, 252, 0.5),
+      0 0 15px rgba(91, 66, 243, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
